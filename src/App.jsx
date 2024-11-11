@@ -5,10 +5,20 @@ import notificationData from './notifications';
 
 /*Break into components*/
 
-/*************Heading*************/
-const NotificationsHeading = ({heading, style}) => {
-  return <h1 style={style}>{heading}</h1>
+/*************Heading and number of notifications*************/
+const NotificationsHeading = ({heading, style, children}) => {
+
+  return (
+    <div>
+   <h1 style={style}>{heading}</h1>
+  {children} {}
+   
+</div>
+  )
 }
+
+
+
 /************ID*****************/
 function Id ({id}) {
   return <h3 className=" rounded text-center text-black bg-body-secondary mt-2 me-5 ms-5"> {id}</h3>
@@ -60,14 +70,7 @@ return (
   )
 }
 
-/**************Display number of notifications************/
-function DisplayNotifications ({notifications}) {
-return(
-  <p className='fs-2 text-center mt-4 mb-4 bg-dark text-white'>
-   {notifications.length > 1 ? `You have ${notifications.length} notifications`
-   : `You don't have notifications`} </p>
-)
-}
+
 
 
 
@@ -91,8 +94,11 @@ function App() {
   return (
     <>
       
-      <NotificationsHeading heading="Notifications" style={style} />
-      <DisplayNotifications notifications={notifications}/>
+      <NotificationsHeading heading="Notifications" style={style} >
+      <p className='fs-2 text-center mt-4 mb-4 bg-dark text-white'>
+     {notifications.length > 1 ? `You have ${notifications.length} notifications`
+     : `You don't have notifications`} </p>
+     </NotificationsHeading>
       <Notifications notifications={notifications} onClear={clearNotification}/>
       <ClearAll clearAll={clearAll} />
       </>
